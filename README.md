@@ -109,19 +109,19 @@ python vettorizza.py
    - ` ` (spazio)
    - `""` (carattere per carattere, come ultima risorsa)
 3. **Generazione embedding**: ogni chunk viene trasformato in un vettore numerico tramite il modello `text-embedding-3-large` di Azure OpenAI
-4. **Persistenza**: i vettori e i metadati vengono salvati in un database ChromaDB locale nella cartella `./chroma_buste_paga`
+4. **Persistenza**: i vettori e i metadati vengono salvati in un database ChromaDB locale nella cartella `./chroma_db`
 
 ### Output atteso
 
 ```
-Vettorizzati 42 chunk da 08_Agosto_2025.pdf
-Salvati in ./chroma_buste_paga
+Vettorizzati 42 chunk da documento.pdf
+Salvati in ./chroma_db
 ```
 
 ### Cosa viene generato su disco
 
 ```
-chroma_buste_paga/
+chroma_db/
 ├── chroma.sqlite3              # Database SQLite con metadati e mapping
 └── <uuid>/
     ├── data_level0.bin         # Vettori di embedding (HNSW index)
@@ -153,16 +153,16 @@ python interroga.py
 ### Output di esempio
 
 ```
-Database caricato da: ./chroma_buste_paga
+Database caricato da: ./chroma_db
 Documenti totali: 42
 
-Domanda (o 'esci'): qual e' il netto in busta?
+Domanda (o 'esci'): qual e' l'importo totale?
 
 Trovati 5 risultati:
 
 --- Risultato 1 ---
 [contenuto del chunk piu' rilevante]
-Fonte: 08_Agosto_2025.pdf
+Fonte: documento.pdf
 Pagina: 2
 ```
 
@@ -214,10 +214,10 @@ Questo prompt e' fondamentale per evitare che il modello "inventi" informazioni 
 ```
 Sistema pronto. Documenti: 42
 
-Domanda (o 'esci'): qual e' il netto in busta?
+Domanda (o 'esci'): qual e' l'importo totale?
 
-Il netto in busta per il mese di agosto 2025 risulta essere di 1.850,00 euro,
-come indicato nella sezione "Netto da pagare" del documento.
+L'importo totale risulta essere di 1.850,00 euro, come indicato
+nella sezione riepilogativa del documento.
 ```
 
 ---
@@ -231,7 +231,7 @@ come indicato nella sezione "Netto da pagare" del documento.
 | `vettorizza.py` | Indicizza il PDF in ChromaDB | Una volta per documento |
 | `interroga.py` | Ricerca semantica (chunk grezzi) | Per debug o consultazione rapida |
 | `interroga_llm.py` | RAG completo con risposta LLM | Per interrogare il documento |
-| `chroma_buste_paga/` | Database vettoriale generato | Generato automaticamente |
+| `chroma_db/` | Database vettoriale generato | Generato automaticamente |
 
 ---
 

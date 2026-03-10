@@ -6,13 +6,13 @@ from langchain_chroma import Chroma
 from langchain_core.messages import SystemMessage, HumanMessage
 from anonimizza import anonimizza
 
-# Configurazione SSL per ambiente EY
+# Disable SSL verification for corporate proxy/firewall environments
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 os.environ['CURL_CA_BUNDLE'] = ''
 os.environ['REQUESTS_CA_BUNDLE'] = ''
 
-PERSIST_DIR = "./chroma_buste_paga"
+PERSIST_DIR = "./chroma_db"
 
 
 def main():

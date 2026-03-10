@@ -1,6 +1,6 @@
 .venv/
 __pycache__/
 *.pyc
-chroma_buste_paga/
+chroma_db/
 documenti/
 .env

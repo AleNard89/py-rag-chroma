@@ -44,7 +44,7 @@ RE_NOME_PERSONA = re.compile(
 
 # Parole da NON anonimizzare (nomi aziende, voci busta paga, etc.)
 WHITELIST = {
-    'ERNST', 'YOUNG', 'PAGA', 'BASE', 'TICKET', 'RESTAURANT',
+    'PAGA', 'BASE', 'TICKET', 'RESTAURANT',
     'LAVORO', 'DIPENDENTE', 'LIVELLO', 'IMPIEGATO', 'DIRIGENTE',
     'OPERAIO', 'QUADRO', 'APPRENDISTA',
     'CONTING', 'SUPPL', 'FUNZ',
@@ -107,25 +107,16 @@ if __name__ == "__main__":
     chunk = """000001 AZIENDA ESEMPIO S.P.A.
 VIA ROMA 1
 00100 ROMA (RM)
-00123456789 1234567890/01 012345678/05
 0000000001
 SEDE ROMA
 Agosto 2025
-Variabili di 7/2025
-0012345 ROSSI MARIO LUIGI RSSMRL85A01H501Z
-01-01-1985 01-06-2020
+0012345 ROSSI MARIO RSSMRA85A01H501Z
 Impiegato Livello Q
-Terziario LAZ RM
-5 25 25 17 136,00 31
 PAGA BASE
 2.000,00000
-CONTING.
-500,00000
 IBAN IT60X0542811101000000123456
-BANCA ESEMPIO S.P.A.
-FILIALE DI ROMA
 Tel: +39 333 1234567
-email: mario.rossi@esempio.it"""
+email: test@esempio.it"""
 
     print("=== ORIGINALE ===")
     print(chunk)
